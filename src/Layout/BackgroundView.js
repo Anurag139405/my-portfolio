@@ -1,17 +1,18 @@
-import React from 'react'
+import React from 'react';
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
-function BackgroundView({ children }) {
-
+function BackgroundView({ children, colorTheme }) {
     const particlesInit = async (main) => {
-        console.log(main);
         await loadFull(main);
     };
 
     const particlesLoaded = (container) => {
         console.log(container);
     };
+
+    const particleColor = colorTheme === 'dark' ? "#ffffff" : "#ec6e59"; // Change color based on theme
+    const linkColor = colorTheme === 'dark' ? "#ffffff" : "#ec6e59"; // Link color based on theme
 
     return (
         <div id="particles-js">
@@ -22,7 +23,6 @@ function BackgroundView({ children }) {
                 options={{
                     fpsLimit: 120,
                     interactivity: {
-
                         modes: {
                             push: {
                                 quantity: 4
@@ -35,13 +35,10 @@ function BackgroundView({ children }) {
                     },
                     particles: {
                         color: {
-                           
-                            value: "#ec6e59",
-                            
+                            value: particleColor,
                         },
                         links: {
-                           
-                            color: "#ec6e59",
+                            color: linkColor,
                             distance: 150,
                             enable: true,
                             opacity: 0.3,
@@ -81,8 +78,8 @@ function BackgroundView({ children }) {
                 }}
             />
             {children}
-        </div >
-    )
+        </div>
+    );
 }
 
-export default BackgroundView
+export default BackgroundView;
